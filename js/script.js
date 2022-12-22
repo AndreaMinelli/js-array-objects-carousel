@@ -77,12 +77,24 @@ const bigPics = document.querySelectorAll(".big-pic");
 let currentActive = 0;
 bigPics[currentActive].classList.add("active");
 
+//Evento al click next
 next.addEventListener("click", () => {
   bigPics[currentActive].classList.remove("active");
   if (currentActive < bigPics.length - 1) {
     currentActive++;
   } else {
     currentActive = 0;
+  }
+  bigPics[currentActive].classList.add("active");
+});
+
+//Evento al click prev
+prev.addEventListener("click", () => {
+  bigPics[currentActive].classList.remove("active");
+  if (!currentActive) {
+    currentActive = bigPics.length - 1;
+  } else {
+    currentActive--;
   }
   bigPics[currentActive].classList.add("active");
 });

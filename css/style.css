@@ -81,6 +81,7 @@ img{
     align-items: center;
     overflow: hidden;
     filter: opacity(0.4);
+    cursor: pointer;
 }
 
 figure.active{

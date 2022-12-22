@@ -126,3 +126,15 @@ prev.addEventListener("click", () => {
   thumbnails[currentActive].classList.add("active");
   bigPics[currentActive].classList.add("active");
 });
+
+//Creo ciclo per aggiungere evento al click thumbnails
+
+thumbnails.forEach((thumb, i) => {
+  thumb.addEventListener("click", () => {
+    bigPics[currentActive].classList.remove("active");
+    thumbnails[currentActive].classList.remove("active");
+    currentActive = i;
+    thumbnails[currentActive].classList.add("active");
+    bigPics[currentActive].classList.add("active");
+  });
+});

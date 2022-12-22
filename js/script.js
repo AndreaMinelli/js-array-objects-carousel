@@ -47,4 +47,42 @@ const data = [
   },
 ];
 
-console.log("ok");
+//Targhettizzo gli elementi in pagina
+const carouselLeft = document.querySelector(".carousel-left");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+let pictures = "";
+//Creo ciclo che stampi un'immagine per ogni elemento
+data.forEach((image, i) => {
+  i++;
+  pictures += `
+  <div class="big-pic">
+    <img src="img/0${i}.webp" alt="pics ${i}" />
+    <div class="pic-description">
+      <h2>${image.title}</h2>
+      <p>
+        ${image.text}
+      </p>
+    </div>
+  </div>
+  `;
+});
+
+carouselLeft.innerHTML = pictures;
+
+//Aggiungo classe active per rendere l'immagine visibile dinamicamente
+const bigPics = document.querySelectorAll(".big-pic");
+
+let currentActive = 0;
+bigPics[currentActive].classList.add("active");
+
+next.addEventListener("click", () => {
+  bigPics[currentActive].classList.remove("active");
+  if (currentActive < bigPics.length - 1) {
+    currentActive++;
+  } else {
+    currentActive = 0;
+  }
+  bigPics[currentActive].classList.add("active");
+});

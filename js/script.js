@@ -111,17 +111,23 @@ const getAutoplay = () => {
   }, 3000);
 };
 
-const restarAutoplay = () => {
+const stopAutoplay = () => {
   clearInterval(autoplay);
+};
+
+const restarAutoplay = () => {
+  stopAutoplay();
   getAutoplay();
 };
 
 //# AZIONI PRELIMINARI
 //Targhettizzo gli elementi in pagina
-const carouselLeft = document.querySelector(".carousel-left");
+const bigPic = document.querySelector(".big-pictures");
 const thumbnailsElement = document.querySelector(".thumbnails");
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
+const playElement = document.getElementById("player-play");
+const stopElement = document.getElementById("player-stop");
 
 //# EVENTI LOGICI
 getAutoplay();
@@ -135,7 +141,7 @@ data.forEach((image, i) => {
   thumb += getThumbnails(i);
 });
 
-carouselLeft.innerHTML += pictures;
+bigPic.innerHTML += pictures;
 thumbnailsElement.innerHTML += thumb;
 
 //Aggiungo classe active per rendere l'immagine visibile dinamicamente
@@ -164,4 +170,15 @@ thumbnails.forEach((thumb, i) => {
     changePics(i);
     restarAutoplay();
   });
+});
+
+//Aggiungo event listner al player
+
+playElement.addEventListener("click", () => {
+  getAutoplay();
+});
+
+stopElement.addEventListener("click", () => {
+  stopAutoplay();
+  console.log("ciao");
 });

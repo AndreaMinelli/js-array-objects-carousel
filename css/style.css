@@ -82,6 +82,7 @@ img{
 
 .player .fa-solid{
     font-size: 50px;
+    cursor: pointer;
 }
 
 .carousel-left:hover .player{

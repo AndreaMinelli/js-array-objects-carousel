@@ -47,30 +47,48 @@ const data = [
   },
 ];
 
-//Targhettizzo gli elementi in pagina
-const carouselLeft = document.querySelector(".carousel-left");
-const prev = document.getElementById("prev");
-const next = document.getElementById("next");
-
-let pictures = "";
-//Creo ciclo che stampi un'immagine per ogni elemento
-data.forEach((image, i) => {
-  i++;
-  pictures += `
+//Creo funzione per big pics
+const getBigPic = (element, i) => {
+  const picture = `
   <div class="big-pic">
     <img src="img/0${i}.webp" alt="pics ${i}" />
     <div class="pic-description">
-      <h2>${image.title}</h2>
+      <h2>${element.title}</h2>
       <p>
-        ${image.text}
+        ${element.text}
       </p>
     </div>
   </div>
   `;
+  return picture;
+};
+
+const getThumbnails = (i) => {
+  const thumb = `
+  <figure>
+  <img src="img/0${i}.webp" alt="pics ${i}" />
+  </figure>
+  `;
+  return thumb;
+};
+
+//Targhettizzo gli elementi in pagina
+const carouselLeft = document.querySelector(".carousel-left");
+const carouselRight = document.querySelector(".carousel-right");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+let pictures = "";
+let thumb = "";
+//Creo ciclo che stampi un'immagine per ogni elemento
+data.forEach((image, i) => {
+  i++;
+  pictures += getBigPic(image, i);
+  thumb += getThumbnails(i);
 });
 
 carouselLeft.innerHTML = pictures;
-
+carouselRight.innerHTML += thumb;
 //Aggiungo classe active per rendere l'immagine visibile dinamicamente
 const bigPics = document.querySelectorAll(".big-pic");
 

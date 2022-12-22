@@ -48,6 +48,14 @@ img{
     width: 90%;
 }
 
+.big-pic{
+    display: none;
+}
+
+.big-pic.active{
+    display: block;
+}
+
 .pic-description p{
     font-size: 18px;
 }

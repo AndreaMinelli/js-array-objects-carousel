@@ -64,6 +64,32 @@ img{
     font-size: 18px;
 }
 
+/* Carousel Left Player */
+
+.carousel-left .player{
+    height: 100%;
+    padding: 0 200px;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1;
+}
+
+.player .fa-solid{
+    font-size: 50px;
+}
+
+.carousel-left:hover .player{
+    display: flex;
+}
+
+
+
 /* Carousel Right */
 
 #carousel .carousel-right{

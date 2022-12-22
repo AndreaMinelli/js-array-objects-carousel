@@ -135,7 +135,7 @@ data.forEach((image, i) => {
   thumb += getThumbnails(i);
 });
 
-carouselLeft.innerHTML = pictures;
+carouselLeft.innerHTML += pictures;
 thumbnailsElement.innerHTML += thumb;
 
 //Aggiungo classe active per rendere l'immagine visibile dinamicamente

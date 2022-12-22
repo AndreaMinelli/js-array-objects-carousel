@@ -18,7 +18,7 @@ Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi)
 BONUS 3:
 Aggiungere bottoni di start/stop  del meccanismo di autoplay.
 */
-
+//# ARRAY IMMAGINI
 const data = [
   {
     image: "img/01.webp",
@@ -47,6 +47,7 @@ const data = [
   },
 ];
 
+//# FUNZIONI
 //Creo funzione per big pics
 const getBigPic = (element, i) => {
   const picture = `
@@ -72,12 +73,14 @@ const getThumbnails = (i) => {
   return thumb;
 };
 
+//# AZIONI PRELIMINARI
 //Targhettizzo gli elementi in pagina
 const carouselLeft = document.querySelector(".carousel-left");
-const carouselRight = document.querySelector(".carousel-right");
+const thumbnailsElement = document.querySelector(".thumbnails");
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
 
+//# EVENTI LOGICI
 let pictures = "";
 let thumb = "";
 //Creo ciclo che stampi un'immagine per ogni elemento
@@ -88,31 +91,38 @@ data.forEach((image, i) => {
 });
 
 carouselLeft.innerHTML = pictures;
-carouselRight.innerHTML += thumb;
+thumbnailsElement.innerHTML += thumb;
 //Aggiungo classe active per rendere l'immagine visibile dinamicamente
 const bigPics = document.querySelectorAll(".big-pic");
+const thumbnails = document.querySelectorAll(".thumbnails figure");
 
 let currentActive = 0;
 bigPics[currentActive].classList.add("active");
+thumbnails[currentActive].classList.add("active");
 
 //Evento al click next
 next.addEventListener("click", () => {
   bigPics[currentActive].classList.remove("active");
+  thumbnails[currentActive].classList.remove("active");
   if (currentActive < bigPics.length - 1) {
     currentActive++;
   } else {
     currentActive = 0;
   }
   bigPics[currentActive].classList.add("active");
+  thumbnails[currentActive].classList.add("active");
+  console.log(currentActive);
 });
 
 //Evento al click prev
 prev.addEventListener("click", () => {
   bigPics[currentActive].classList.remove("active");
+  thumbnails[currentActive].classList.remove("active");
   if (!currentActive) {
     currentActive = bigPics.length - 1;
   } else {
     currentActive--;
   }
+  thumbnails[currentActive].classList.add("active");
   bigPics[currentActive].classList.add("active");
 });

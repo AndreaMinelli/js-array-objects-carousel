@@ -18,6 +18,8 @@
 img{
     display: block;
     max-width: 100%;
+    object-fit: fill;
+    object-position: center;
 }
 
 /* Carousel */
@@ -69,6 +71,10 @@ img{
     position: relative;
 }
 
+.thumbnails{
+    height: 100%;
+}
+
 .carousel-right figure{
     height: 20%;
     display: flex;
@@ -91,6 +97,7 @@ figure.active{
     transform: translateX(-50%);
     left: 50%;
     cursor: pointer;
+    z-index: 1;
 }
 
 .carousel-right #prev{

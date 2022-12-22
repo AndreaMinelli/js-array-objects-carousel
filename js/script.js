@@ -73,6 +73,37 @@ const getThumbnails = (i) => {
   return thumb;
 };
 
+const changePics = (target) => {
+  //Tolgo la classe active attuale
+  bigPics[currentActive].classList.remove("active");
+  thumbnails[currentActive].classList.remove("active");
+
+  //Creo condizione individuale
+  switch (target) {
+    case "next":
+      if (currentActive < bigPics.length - 1) {
+        currentActive++;
+      } else {
+        currentActive = 0;
+      }
+      break;
+    case "prev":
+      if (!currentActive) {
+        currentActive = bigPics.length - 1;
+      } else {
+        currentActive--;
+      }
+      break;
+    case target:
+      currentActive = target;
+      break;
+  }
+
+  //Aggiungo nuova classe active
+  bigPics[currentActive].classList.add("active");
+  thumbnails[currentActive].classList.add("active");
+};
+
 //# AZIONI PRELIMINARI
 //Targhettizzo gli elementi in pagina
 const carouselLeft = document.querySelector(".carousel-left");
@@ -102,39 +133,18 @@ thumbnails[currentActive].classList.add("active");
 
 //Evento al click next
 next.addEventListener("click", () => {
-  bigPics[currentActive].classList.remove("active");
-  thumbnails[currentActive].classList.remove("active");
-  if (currentActive < bigPics.length - 1) {
-    currentActive++;
-  } else {
-    currentActive = 0;
-  }
-  bigPics[currentActive].classList.add("active");
-  thumbnails[currentActive].classList.add("active");
-  console.log(currentActive);
+  changePics("next");
 });
 
 //Evento al click prev
 prev.addEventListener("click", () => {
-  bigPics[currentActive].classList.remove("active");
-  thumbnails[currentActive].classList.remove("active");
-  if (!currentActive) {
-    currentActive = bigPics.length - 1;
-  } else {
-    currentActive--;
-  }
-  thumbnails[currentActive].classList.add("active");
-  bigPics[currentActive].classList.add("active");
+  changePics("prev");
 });
 
 //Creo ciclo per aggiungere evento al click thumbnails
 
 thumbnails.forEach((thumb, i) => {
   thumb.addEventListener("click", () => {
-    bigPics[currentActive].classList.remove("active");
-    thumbnails[currentActive].classList.remove("active");
-    currentActive = i;
-    thumbnails[currentActive].classList.add("active");
-    bigPics[currentActive].classList.add("active");
+    changePics(i);
   });
 });

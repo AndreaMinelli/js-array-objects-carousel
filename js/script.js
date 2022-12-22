@@ -103,6 +103,18 @@ const changePics = (target) => {
   bigPics[currentActive].classList.add("active");
   thumbnails[currentActive].classList.add("active");
 };
+//Funzioni di AUTOPLAY
+let autoplay;
+const getAutoplay = () => {
+  autoplay = setInterval(() => {
+    changePics("next");
+  }, 3000);
+};
+
+const restarAutoplay = () => {
+  clearInterval(autoplay);
+  getAutoplay();
+};
 
 //# AZIONI PRELIMINARI
 //Targhettizzo gli elementi in pagina
@@ -112,6 +124,8 @@ const prev = document.getElementById("prev");
 const next = document.getElementById("next");
 
 //# EVENTI LOGICI
+getAutoplay();
+
 let pictures = "";
 let thumb = "";
 //Creo ciclo che stampi un'immagine per ogni elemento
@@ -123,6 +137,7 @@ data.forEach((image, i) => {
 
 carouselLeft.innerHTML = pictures;
 thumbnailsElement.innerHTML += thumb;
+
 //Aggiungo classe active per rendere l'immagine visibile dinamicamente
 const bigPics = document.querySelectorAll(".big-pic");
 const thumbnails = document.querySelectorAll(".thumbnails figure");
@@ -134,17 +149,19 @@ thumbnails[currentActive].classList.add("active");
 //Evento al click next
 next.addEventListener("click", () => {
   changePics("next");
+  restarAutoplay();
 });
 
 //Evento al click prev
 prev.addEventListener("click", () => {
   changePics("prev");
+  restarAutoplay();
 });
 
 //Creo ciclo per aggiungere evento al click thumbnails
-
 thumbnails.forEach((thumb, i) => {
   thumb.addEventListener("click", () => {
     changePics(i);
+    restarAutoplay();
   });
 });

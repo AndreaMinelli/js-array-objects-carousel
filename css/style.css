@@ -113,6 +113,7 @@ img{
 
 figure.active{
     filter: opacity(1);
+    border: 3px solid grey;
 }
 
 .carousel-right .fa-solid{

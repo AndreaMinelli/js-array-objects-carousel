@@ -32,12 +32,26 @@ img{
     overflow: hidden;
 }
 
-#carousel .big-pic{
+#carousel .carousel-left{
     flex-basis: 80%;
     display: flex;
     align-items: center;
+    color: white;
+    position: relative;
 }
 
-#carousel .thumbnails{
+.carousel-left .pic-description{
+    text-align: end;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 90%;
+}
+
+.pic-description p{
+    font-size: 18px;
+}
+
+#carousel .carousel-right{
     flex-basis: 20%;
 }
